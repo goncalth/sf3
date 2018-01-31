@@ -36,4 +36,20 @@ class SalesController extends Controller
     {
         return $this->render('@App/Sales/ticket_submission_successful.html.twig');
     }
+
+    public function listAllTicketsToBuyAction(Request $request): Response
+    {
+        $tickets = $this->get('repositories.ticket')->findAll();
+
+        return $this->render('@App/Sales/list_all_tickets_to_buy.html.twig', ['tickets' => $tickets]);
+    }
+
+    public function ticketInfoAction(Request $request, string $name): Response
+    {
+        $tickets = $this->get('repositories.ticket')->findTicket($name);
+
+        return $this->render('@App/Sales/ticket_info.html.twig', ['tickets' => $tickets]);
+    }
+
+
 }

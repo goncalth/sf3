@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Tickets à vendre{% endblock %}
+
+{% block body %}
+    {% for ticket in tickets %}
+        <li><a href="{{ path('ticket_info', {'name':ticket.eventName}) }}">{{ ticket.eventName }}</a></li>
+    {% endfor %}
+{% endblock %}

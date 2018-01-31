@@ -54,4 +54,17 @@ SQL;
     {
         return Ticket::fromArray($row);
     }
+
+    public function findTicket(String $name): Ticket
+    {
+        $query =<<<SQL
+SELECT * FROM tickets WHERE event_name = :name;
+SQL;
+
+        $statement = $this->connection->prepare($query);
+        $statement->execute(['name' => $name]);
+        $row = $statement->fetch(\PDO::FETCH_ASSOC);
+
+        return $this->hydrateFromRow($row);
+    }
 }

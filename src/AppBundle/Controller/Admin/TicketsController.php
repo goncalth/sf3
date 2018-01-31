@@ -17,4 +17,5 @@ class TicketsController extends Controller
 
         return $this->render('@App/Admin/Tickets/list_all_tickets.html.twig', ['tickets' => $tickets]);
     }
+
 }
